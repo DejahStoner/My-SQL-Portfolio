@@ -1,0 +1,46 @@
+/* Table creation */
+CREATE TABLE Sanrio_Plushies (
+  Plushie_ID INTEGER PRIMARY KEY,
+  Plushie_Type TEXT,
+  Price NUMERIC(10, 2), -- Assuming prices are in dollars
+  Size TEXT,
+  Rarity TEXT
+);
+
+/* Data insertion */
+INSERT INTO Sanrio_Plushies (Plushie_ID, Plushie_Type, Price, Size, Rarity)
+VALUES
+  (1, 'Hello Kitty', 15.99, 'Medium', 'Common'),
+  (2, 'My Melody', 24.99, 'Large', 'Rare'),
+  (3, 'Cinnamoroll', 7.99, 'Small', 'Common'),
+  (4, 'Hello Kitty', 32.99, 'Medium', 'Limited Edition'),
+  (5, 'My Melody', 12.99, 'Medium', 'Common'),
+  (6, 'Cinnamoroll', 45.99, 'Large', 'Rare'),
+  (7, 'Hello Kitty', 9.99, 'Small', 'Common');
+
+/* Calculate average price, maximum price, and minimum price */
+SELECT AVG(Price) AS Average_Price FROM Sanrio_Plushies;
+SELECT MAX(Price) FROM Sanrio_Plushies;
+SELECT MIN(Price) FROM Sanrio_Plushies;
+
+/* Calculate average price for Plushie Types with an average price greater than 20 */
+SELECT Plushie_Type, AVG(Price) AS Avg_Price
+FROM Sanrio_Plushies
+GROUP BY Plushie_Type
+HAVING AVG(Price) > 20;
+
+/* Categorize prices into 'Low', 'Medium', and 'High' */
+SELECT Plushie_Type, CASE
+  WHEN Price < 10 THEN 'Low'
+  WHEN Price >= 10 AND Price < 30 THEN 'Medium'
+  ELSE 'High'
+END AS Price_Category
+FROM Sanrio_Plushies;
+
+/* Query for rare and large plushies or limited edition and medium plushies (case-insensitive) */
+SELECT *
+FROM Sanrio_Plushies
+WHERE (LOWER(Rarity) = 'rare' AND LOWER(Size) = 'large')
+OR (LOWER(Rarity) = 'limited edition' OR LOWER(Size) = 'medium');
+
+/* I love adding a lot of comments to my projects for better readability */
