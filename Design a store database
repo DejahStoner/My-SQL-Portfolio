@@ -1,0 +1,9 @@
+CREATE TABLE plushies ( id INTEGER PRIMARY KEY, name TEXT, softness INTEGER, price INTEGER);
+
+INSERT INTO plushies VALUES (1, "Kuromi", 5, 53);
+INSERT INTO plushies VALUES (2, "Cinnamonroll", 4, 33);
+INSERT INTO plushies VALUES (3, "My Melody", 2, 35);
+INSERT INTO plushies VALUES (4, "Hello Kitty", 3, 40);
+INSERT INTO plushies VALUES (5, "Choco Kat", 3, 23);
+
+SELECT * FROM plushies ORDER BY price ASC;
